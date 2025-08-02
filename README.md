@@ -16,26 +16,48 @@ Setup Instructions
 now npm run dev
 
 How the Authentication Flow Works
+
+
 -> Login
+
 User enters credentials (username and password).
 POST request is sent to /api/login.
 
 -> Server Validation
+
  The server checks the credentials against a predefined user list.
 On success, a JWT is created with:
 Token is returned in an HttpOnly cookie named token
 
 
 -> Middleware Protection
+
 On accessing protected routes like /admin/dashboard or /user/dashboard:
 Middleware reads and verifies the token.
 Redirects users based on role.
 If token is missing/invalid, redirects to /login.
 
+
+
 On successful login, users are greeted with:
+
 Role-based dashboards (Admin or User) show relevant content.
 
 
 -> Logout
 On logout, /api/logout clears the token cookie.
+
 User is redirected back to /login.
+
+
+Tech Stack
+
+Next.js (App Router)
+
+TypeScript
+
+Tailwind CSS
+
+JWT (jsonwebtoken + jose)
+
+Middleware (for route protection)
